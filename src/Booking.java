@@ -121,7 +121,24 @@ public class Booking {
                 }
                 // View a doctor's schedule
                 case 3: {
-                    System.out.println();
+                    System.out.println("Select From");
+                    for ( int i=0;i<DOCTORS.length; i++){
+                        System.out.println((i+1)+"."+DOCTORS[i]);
+                    }
+                    System.out.print("\nEnter Your Pick: ");
+                    int pick = scan.nextInt();
+                    //look up for doctors appointments in the list of apointments
+                    System.out.println("\nPatient\t\tTime of Appointment");
+                    for(int i=0; i<appointments.size();i++){
+                        if ((DOCTORS[pick-1]).equals(appointments.get(i).getName_of_doctor())){
+                            System.out.println(appointments.get(i).getPatient().getFirst_name()+
+                                    " "+appointments.get(i).getPatient().getSurname() +"\t\t"+appointments.get(i).getTime_of_appointment() );
+                        }
+                        else if(!(DOCTORS[pick-1]).equals(appointments.get(i).getName_of_doctor())) {
+                            System.out.println("NO APPOINTMENTS FOR "+ DOCTORS[pick-1].toUpperCase()+" YET");
+                            break;
+                        }
+                    }
                     break;
                 }
                 // View patients appointments
