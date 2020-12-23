@@ -143,7 +143,15 @@ public class Booking {
                 }
                 // View patients appointments
                 case 4: {
-                    System.out.println("");
+                    if(appointments.isEmpty()){
+                        System.out.println("\nNO APPOINTMENTS YET");
+                    }else{
+                        System.out.println("CURRENT APPOINTMENTS"
+                                + "\n\nPatient's Name\tTime of Appointemt\t Doctor");
+                        for(int i=0;i<appointments.size();i++){
+                            System.out.println(appointments.get(i));
+                        }
+                    }
                     break;
                 }
                 case 5: {
