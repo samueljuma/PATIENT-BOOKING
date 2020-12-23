@@ -92,7 +92,31 @@ public class Booking {
                 }
                 // Cancel Appointment
                 case 2: {
-                    System.out.println("Cancel appointment");
+                    if (appointments.isEmpty()) {
+                        System.out.println("\nNO APOINTMENTS YET");
+                    } else {
+                        System.out.println("******PRESENT APPOINTMENTS*****");
+                        for (int i = 0; i < appointments.size(); i++) {
+                            System.out.println((i + 1) + "." + appointments.get(i));
+                        }
+                        System.out.print("\nEnter Your Pick: ");
+                        int pick = scan.nextInt();
+                        // update time booked for doctor
+                        for (int i = 0; i < doctors.size(); i++) {
+                            if (doctors.get(i).getName().equals(appointments.get(pick-1).getName_of_doctor())) {
+                                doctors.get(i).setTimeBooked(doctors.get(i).getTimeBooked().replaceAll(appointments.get(pick-1).getTime_of_appointment(), ""));
+                            }
+
+                        }
+                        //remove appointment from list
+                        appointments.remove(appointments.get(pick-1));
+
+                        System.out.println("Appointment Cancelled Successfully"
+                                + "\n***REMAINING APPOINTMENTS***");
+                        for (int i = 0; i < appointments.size(); i++) {
+                            System.out.println((i + 1) + "." + appointments.get(i));
+                        }
+                    }
                     break;
                 }
                 // View a doctor's schedule
