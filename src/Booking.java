@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class Booking {
     private static Scanner scan = new Scanner(System.in);
     // RPMC DOCTORS
-    private static final String[] DOCTORS = {"Dr. Daniel Hagan","Dr. Bravo Gilbert",
-            "Dr. Steven Seagal","Dr. Igor Dondon"};
+    private static final String[] DOCTORS = {"Dr. Daniel Hagan", "Dr. Bravo Gilbert",
+            "Dr. Steven Seagal", "Dr. Igor Dondon"};
     private static ArrayList<Doctor> doctors = new ArrayList<>();
     private static ArrayList<Appointment> appointments = new ArrayList<>();
     private static final int NUMBEROFDOCTORS = 4;
+
     public static void mainMenu() {
         System.out.print("_________________________________________________"
                 + "\n\n\tROTTEN PARK MEDICAL CENTRE (RMPC)"
@@ -21,15 +22,72 @@ public class Booking {
                 + "\n-------------------------------------------------"
                 + "\n\tPlease enter an option: ");
     }
-    public static void handleUserChoice(){
-        while(true){
+
+    public static void handleUserChoice() {
+        // initialize doctors with number of apointments
+        for (int i = 0; i < 4; i++) {
+            Doctor doc1 = new Doctor(DOCTORS[i], 0, "");
+            doctors.add(doc1);
+        }
+        while (true) {
             mainMenu();
             int option = scan.nextInt();
             System.out.println("_________________________________________________");
-            switch (option){
+            switch (option) {
                 // Register patient
                 case 1: {
-                    System.out.println("register patient");
+                    // patient info
+                    System.out.println("\n****** ENTER PATIENT DETAILS******");
+                    String first_name, surname, telephone, date_of_birth, country_of_origin;
+                    // first name
+                    System.out.print("First Name: ");
+                    first_name = scan.next();
+                    // surname
+                    System.out.print("Surname: ");
+                    surname = scan.next();
+                    //telephone
+                    System.out.print("Telephone: ");
+                    telephone = scan.next();
+                    //date of birth
+                    System.out.print("Date of Birth: ");
+                    date_of_birth = scan.next();
+                    // country of origin
+                    System.out.print("Country of Origin: ");
+                    country_of_origin = scan.next();
+
+                    Patient patient = new Patient(first_name, surname, telephone, date_of_birth, country_of_origin);
+
+                    //Select time
+                    System.out.print("\nEnter time (i.e 7:00AM): ");
+                    String time_of_appointment = scan.next();
+                    // display doctors available
+                    System.out.println("\t***DOCTORS AVAILABLE***"
+                            + "\n\tID\tName");
+                    ArrayList<String> doctorsToChooseFrom = new ArrayList<>();
+                    int count = 1;
+                    for (int i = 0; i < NUMBEROFDOCTORS; i++) {
+                        if ((doctors.get(i).getNumber_of_appointments() <= 7) && (!doctors.get(i).getTimeBooked().contains(time_of_appointment))) {
+                            System.out.println("\t" + (count++) + "\t" + doctors.get(i).getName());
+                            doctorsToChooseFrom.add(doctors.get(i).getName());
+                        }
+                    }
+                    if (doctorsToChooseFrom.isEmpty()) {
+                        System.out.println("\t FULLY BOOKED");
+                        break;
+                    }
+                    // choose a doctor
+                    System.out.print("Pick ID: ");
+                    int pick = scan.nextInt() - 1;
+                    Appointment appointment = new Appointment(patient, time_of_appointment, doctorsToChooseFrom.get(pick));
+                    appointments.add(new Appointment(patient, time_of_appointment, doctorsToChooseFrom.get(pick)));
+
+                    // update timebooked for the specific doctor
+                    for (int i = 0; i < doctors.size(); i++) {
+                        if (doctors.get(i).getName().equals(doctorsToChooseFrom.get(pick))) {
+                            doctors.get(i).setTimeBooked(doctors.get(i).getTimeBooked() + time_of_appointment);
+                        }
+                    }
+                    System.out.println("Booked successfully\n");
                     break;
                 }
                 // Cancel Appointment
@@ -56,6 +114,7 @@ public class Booking {
             }
         }
     }
+
     public static void main(String[] args) {
         handleUserChoice();
 
