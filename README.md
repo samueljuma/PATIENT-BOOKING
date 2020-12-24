@@ -4,4 +4,4 @@ A console-based patient booking system written in Java
 + Operating System: Linux
 + IDE: IntelliJ IDEA
 + Langauge: Java
-
+[Book Appointment](screenshots/1.png)
