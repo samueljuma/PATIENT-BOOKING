@@ -159,6 +159,7 @@ public class Booking {
                 }
                 default: {
                     System.out.println("INVALID CHOICE: TRY AGAIN");
+                    break;
                 }
             }
         }

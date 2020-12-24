@@ -1,9 +1,13 @@
-# PATIENT-BOOKING
+# 🏥🏥PATIENT-BOOKING🏥🏥
 A console-based patient booking system written in Java
 #### Development Environment
 + Operating System: Linux
 + IDE: IntelliJ IDEA
 + Langauge: Java
+
+##### main menu 
+<image src="screenshots/0.png">
+
 #### Screenshots
 * [Initial Run](screenshots/0.png)
 * [Book Appointment](screenshots/1.png)
