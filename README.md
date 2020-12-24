@@ -11,3 +11,4 @@ A console-based patient booking system written in Java
 * [View a Doctor's Schedule](screenshots/3.png)
 * [View Patients Appointments](screenshots/4.png)
 * [Exit](screenshots/5.png)
+

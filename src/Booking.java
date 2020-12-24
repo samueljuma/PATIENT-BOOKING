@@ -135,7 +135,7 @@ public class Booking {
                                     " "+appointments.get(i).getPatient().getSurname() +"\t\t"+appointments.get(i).getTime_of_appointment() );
                         }
                         else if(!(DOCTORS[pick-1]).equals(appointments.get(i).getName_of_doctor())) {
-                            System.out.println("NO APPOINTMENTS FOR "+ DOCTORS[pick-1].toUpperCase()+" YET");
+//                            System.out.println("NO APPOINTMENTS FOR "+ DOCTORS[pick-1].toUpperCase()+" YET");
                             break;
                         }
                     }
